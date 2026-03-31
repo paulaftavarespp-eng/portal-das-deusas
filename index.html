@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal das Deusas — 21 Dias de Oração e Retorno</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --burgundy: #6B1E2E;
+    --wine: #8B2535;
+    --wine-light: #A63045;
+    --warm-brown: #3D2018;
+    --cream: #F5EDE0;
+    --cream-dark: #EAD9C4;
+    --gold: #C9955A;
+    --gold-light: #E4B87A;
+    --text-dark: #1A0E08;
+    --text-mid: #4A2E20;
+    --text-light: #8A6A58;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-brown);
+    color: var(--cream);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* GRAIN OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.4;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    background: radial-gradient(ellipse at 50% 0%, #5C1525 0%, var(--warm-brown) 70%);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .crown {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    opacity: 0.7;
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .hero-eyebrow {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--cream-dark);
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+    margin-bottom: 3rem;
+  }
+
+  .hero-divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+
+  .hero-desc {
+    max-width: 480px;
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: var(--cream-dark);
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1s;
+    margin-bottom: 3rem;
+  }
+
+  .cta-primary {
+    display: inline-block;
+    background: var(--burgundy);
+    color: var(--cream);
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 1.1rem 2.5rem;
+    text-decoration: none;
+    border: 1px solid var(--wine-light);
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--wine-light);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .cta-primary:hover::before { transform: scaleX(1); }
+  .cta-primary span { position: relative; z-index: 1; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTION BASE */
+  section {
+    padding: 6rem 2rem;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    opacity: 0.4;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--cream);
+    margin-bottom: 2rem;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .body-text {
+    font-size: 0.95rem;
+    line-height: 1.95;
+    color: var(--cream-dark);
+    opacity: 0.85;
+  }
+
+  .body-text + .body-text { margin-top: 1.25rem; }
+
+  /* WEEKS */
+  .weeks { padding: 0 2rem 6rem; max-width: 680px; margin: 0 auto; }
+
+  .week-card {
+    border-left: 1px solid var(--gold);
+    padding: 1.75rem 0 1.75rem 2rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+
+  .week-card::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 2rem;
+    width: 7px;
+    height: 7px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  .week-tag {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .week-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .week-deusas {
+    font-size: 0.8rem;
+    color: var(--gold-light);
+    font-style: italic;
+    margin-bottom: 0.75rem;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .week-desc {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--cream-dark);
+    opacity: 0.8;
+  }
+
+  /* HEKATE */
+  .hekate-block {
+    background: linear-gradient(135deg, #2A0E18 0%, #1A0E08 100%);
+    border: 1px solid rgba(201, 149, 90, 0.3);
+    padding: 3rem 2rem;
+    margin: 0 2rem;
+    max-width: 680px;
+    margin: 0 auto 6rem;
+    position: relative;
+  }
+
+  .hekate-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .hekate-block::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  /* PRICE */
+  .price-block {
+    padding: 0 2rem 6rem;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .price-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201, 149, 90, 0.25);
+    padding: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .price-card-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+  }
+
+  .price-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .price-value span {
+    font-size: 1.1rem;
+    vertical-align: super;
+    color: var(--gold);
+  }
+
+  .price-note {
+    font-size: 0.8rem;
+    color: var(--cream-dark);
+    opacity: 0.7;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .price-strike {
+    text-decoration: line-through;
+    opacity: 0.5;
+    font-size: 0.85rem;
+    margin-left: 0.5rem;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* HOW IT WORKS */
+  .steps { list-style: none; margin-top: 2rem; }
+  .steps li {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    opacity: 0.6;
+    flex-shrink: 0;
+    line-height: 1;
+    padding-top: 2px;
+  }
+  .step-text {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--cream-dark);
+  }
+  .step-text strong {
+    color: var(--cream);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* CTA FINAL */
+  .cta-final {
+    text-align: center;
+    padding: 6rem 2rem;
+    background: radial-gradient(ellipse at 50% 100%, #5C1525 0%, var(--warm-brown) 70%);
+    position: relative;
+  }
+
+  .cta-final::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .cta-final-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 7vw, 4rem);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-final-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .cta-final-sub {
+    font-size: 0.9rem;
+    color: var(--cream-dark);
+    opacity: 0.75;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+  }
+
+  .whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--burgundy);
+    color: var(--cream);
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 1.25rem 2.75rem;
+    text-decoration: none;
+    border: 1px solid var(--wine-light);
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+  }
+
+  .whatsapp-btn:hover {
+    background: var(--wine-light);
+    border-color: var(--gold);
+  }
+
+  .whatsapp-icon {
+    width: 18px;
+    height: 18px;
+    fill: var(--cream);
+  }
+
+  .cta-dates {
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    line-height: 2;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid rgba(201, 149, 90, 0.15);
+    font-size: 0.75rem;
+    color: var(--cream-dark);
+    opacity: 0.4;
+    letter-spacing: 0.1em;
+  }
+
+  /* SEPARATOR */
+  .sep {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201, 149, 90, 0.3), transparent);
+    margin: 0 auto;
+    max-width: 680px;
+  }
+
+  @media (max-width: 480px) {
+    .hekate-block, .price-block { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .price-card { padding: 1.75rem 1.25rem; }
+    .week-card { padding-left: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="crown">♛</div>
+  <div class="hero-eyebrow">Paula Tavares · Soberana</div>
+  <h1 class="hero-title">Portal das<br><em>Deusas</em></h1>
+  <p class="hero-subtitle">21 dias de oração e retorno</p>
+  <div class="hero-divider"></div>
+  <p class="hero-desc">
+    Abril é o mês das Deusas.<br>
+    Durante 21 dias, você recebe um áudio de oração por dia — direto no grupo do WhatsApp.<br>
+    Com as Deusas de abril como âncora.<br>
+    Um portal para dentro de você.
+  </p>
+  <a href="https://wa.me/5585994371043?text=Olá%20Paula!%20Quero%20me%20inscrever%20no%20Portal%20das%20Deusas%20🌑" class="cta-primary" target="_blank">
+    <span>Quero entrar no portal</span>
+  </a>
+</div>
+
+<!-- O QUE É -->
+<section>
+  <div class="section-label">O que é</div>
+  <h2 class="section-title">Não é meditação.<br>Não é <em>afirmação positiva.</em></h2>
+  <p class="body-text">
+    É oração com intenção. Com as Deusas de abril como guia. Cada semana carrega uma camada de trabalho diferente — e você vai sentir a diferença entre rezar para se sentir bem e rezar para se encontrar de verdade.
+  </p>
+  <p class="body-text">
+    Durante 21 dias, você acorda com um áudio no grupo do WhatsApp. Uma oração. Uma Deusa. Uma intenção. E no encerramento — Hekate.
+  </p>
+</section>
+
+<div class="sep"></div>
+
+<!-- AS SEMANAS -->
+<div class="weeks">
+  <div class="section-label" style="padding: 4rem 0 2rem;">As três semanas</div>
+
+  <div class="week-card">
+    <div class="week-tag">Semana 1 · Dias 1–7</div>
+    <div class="week-name">Despertar</div>
+    <div class="week-deusas">Arianrod · Perséfone</div>
+    <div class="week-desc">Quem você é antes do que te ensinaram a ser. A guardiã dos ciclos e a rainha que emergiu do submundo abrem o portal — para você olhar para o que ficou para trás sem julgamento e encontrar poder onde não esperava.</div>
+  </div>
+
+  <div class="week-card">
+    <div class="week-tag">Semana 2 · Dias 8–14</div>
+    <div class="week-name">Limpeza</div>
+    <div class="week-deusas">Cibele · Kuan Yin · A-Ma · Anahit</div>
+    <div class="week-desc">O que precisa morrer para você viver de verdade. Soltar o que você carregou que nunca foi seu. Se perdoar. Confiar na travessia. Reconectar com o que você sabia antes de qualquer condicionamento.</div>
+  </div>
+
+  <div class="week-card">
+    <div class="week-tag">Semana 3 · Dias 15–21</div>
+    <div class="week-name">Retorno</div>
+    <div class="week-deusas">Hathor · Beltane</div>
+    <div class="week-desc">De volta ao seu centro. De volta ao seu poder. Prazer como sagrado. Beleza como expressão do divino. O fogo que não pede licença. Tudo que foi ativado nos 21 dias — agora se declara.</div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- HEKATE -->
+<section class="hekate-block" style="padding: 4rem 2rem; max-width: 680px; margin: 4rem auto;">
+  <div class="section-label">Encerramento · 27 de abril</div>
+  <h2 class="section-title">Mesa Quântica<br>de <em>Hekate</em></h2>
+  <p class="body-text">
+    A que fica na encruzilhada com a tocha. Não para escolher por você. Para iluminar o que você ainda não quer ver.
+  </p>
+  <p class="body-text" style="margin-top: 1.25rem;">
+    No dia 27 de abril, realizo uma Mesa Quântica de Hekate à distância — para o grupo inteiro. O relatório da sua mesa chega direto no WhatsApp. Hekate não é gentil com o que não serve mais. Ela corta. Ela ilumina. Ela conduz.
+  </p>
+</section>
+
+<div class="sep"></div>
+
+<!-- COMO FUNCIONA -->
+<section>
+  <div class="section-label">Como funciona</div>
+  <h2 class="section-title">Simples.<br><em>Profundo.</em></h2>
+  <ul class="steps">
+    <li>
+      <div class="step-num">01</div>
+      <div class="step-text">
+        <strong>Você entra no grupo do WhatsApp</strong>
+        Grupo fechado, exclusivo para as participantes do Portal.
+      </div>
+    </li>
+    <li>
+      <div class="step-num">02</div>
+      <div class="step-text">
+        <strong>Um áudio de oração por dia</strong>
+        21 dias, 21 orações. Cada uma guiada por uma Deusa de abril, com intenção energética específica.
+      </div>
+    </li>
+    <li>
+      <div class="step-num">03</div>
+      <div class="step-text">
+        <strong>Mesa Quântica de Hekate no encerramento</strong>
+        Realizada à distância no dia 27 de abril. Relatório completo enviado no grupo.
+      </div>
+    </li>
+    <li>
+      <div class="step-num">04</div>
+      <div class="step-text">
+        <strong>Começa dia 6 de abril</strong>
+        Inscrições abertas agora. Vagas limitadas.
+      </div>
+    </li>
+  </ul>
+</section>
+
+<div class="sep"></div>
+
+<!-- PREÇO -->
+<div class="price-block" style="padding-top: 4rem;">
+  <div class="section-label">Investimento</div>
+
+  <div class="price-card">
+    <div class="price-card-label">Até 3 de abril · Early access</div>
+    <div class="price-value"><span>R$</span> 97 <span class="price-strike">R$ 147</span></div>
+    <div class="price-note">Para qualquer mulher pronta para entrar no portal.</div>
+  </div>
+
+  <div class="price-card">
+    <div class="price-card-label">A partir de 4 de abril</div>
+    <div class="price-value"><span>R$</span> 147</div>
+    <div class="price-note">Valor cheio para o público geral.</div>
+  </div>
+
+  <div class="price-card">
+    <div class="price-card-label">Clientes · Quem já fez atendimento comigo</div>
+    <div class="price-value"><span>R$</span> 97</div>
+    <div class="price-note">Valor especial durante todo o período de inscrições. Me chama no WhatsApp para confirmar.</div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<div class="cta-final">
+  <h2 class="cta-final-title">As Deusas não<br>chamam por <em>acaso.</em></h2>
+  <p class="cta-final-sub">
+    Se você sentiu alguma coisa lendo isso —<br>esse chamado é para você.
+  </p>
+  <div>
+    <a href="https://wa.me/5585994371043?text=Olá%20Paula!%20Quero%20me%20inscrever%20no%20Portal%20das%20Deusas%20🌑" class="whatsapp-btn" target="_blank">
+      <svg class="whatsapp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      <span>Garantir minha vaga</span>
+    </a>
+  </div>
+  <div class="cta-dates">
+    Começa dia 6 de abril · Grupo no WhatsApp<br>
+    Até 3 de abril: R$ 97 · Depois: R$ 147
+  </div>
+</div>
+
+<footer>
+  © 2026 Paula Tavares · Soberana · @paulafptavares
+</footer>
+
+</body>
+</html>
